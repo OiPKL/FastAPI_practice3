@@ -2,7 +2,7 @@
 
 from pydantic import BaseModel
 
-class GardenCreate(BaseModel):
+class GardenUpdate(BaseModel):
     gardenTemp: float
     gardenHumid: float
     gardenWater: int
@@ -14,3 +14,6 @@ class Garden(BaseModel):
     gardenHumid: float
     gardenWater: int
     gardenImage: bytes
+
+    class Config:
+        from_attributes = True
