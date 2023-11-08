@@ -2,18 +2,22 @@
 
 from pydantic import BaseModel
 
-class GardenUpdate(BaseModel):
+class SensorUpdate(BaseModel):
     gardenTemp: float
     gardenHumid: float
     gardenWater: int
-    gardenImage: bytes
+
+class GardenCreate(BaseModel):
+    gardenTemp: float
+    gardenHumid: float
+    gardenWater: int
+    gardenImage: str
 
 class Garden(BaseModel):
-    id: int
     gardenTemp: float
     gardenHumid: float
     gardenWater: int
-    gardenImage: bytes
+    gardenImage: str
 
     class Config:
         from_attributes = True

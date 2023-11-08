@@ -1,6 +1,6 @@
 # model.py
 
-from sqlalchemy import Column, Integer, Float, String, LargeBinary, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, Float, String, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from app.database.sqlite import Base
 from datetime import datetime
@@ -59,7 +59,7 @@ class Vegetable(Base):
 class Garden(Base):
     __tablename__ = "MyGarden"
     id = Column(Integer, primary_key=True, index=True)
-    gardenTemp = Column(Float, default=25.0)
-    gardenHumid = Column(Float, default=50.0)
-    gardenWater = Column(Integer, default=60)
-    gardenImage = Column(LargeBinary, default="/app/database/default_image.png")
+    gardenTemp = Column(Float)
+    gardenHumid = Column(Float)
+    gardenWater = Column(Integer)
+    gardenImage = Column(String)

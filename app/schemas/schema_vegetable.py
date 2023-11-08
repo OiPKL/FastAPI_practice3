@@ -3,13 +3,14 @@
 from pydantic import BaseModel, Field
 from enum import Enum
 
-# 사용 가능한 Type과 Char 선택지 정의
+# 사용 가능한 Type 선택지 정의
 class VegetableType(str, Enum):
     TypeA = "TypeA"
     TypeB = "TypeB"
     TypeC = "TypeC"
     TypeD = "TypeD"
 
+# 사용 가능한 Char 선택지 정의
 class VegetableChar(str, Enum):
     CharA = "CharA"
     CharB = "CharB"
