@@ -20,7 +20,7 @@ def sqlalchemy_to_pydantic(garden: Garden) -> GardenPydantic:
 
 # 텃밭 센서 엔드포인트
 @router.put("/sensor", response_model=GardenPydantic)
-def update_sensor_data(sensor_update: SensorUpdate, db: Session = Depends(get_db)):
+def update_sensor(sensor_update: SensorUpdate, db: Session = Depends(get_db)):
 
     new_sensor = db.query(Garden).get(1)
 
@@ -38,7 +38,7 @@ def update_sensor_data(sensor_update: SensorUpdate, db: Session = Depends(get_db
 
 # 텃밭 이미지 엔드포인트
 @router.put("/image", response_model=GardenPydantic)
-def update_garden_image(file: UploadFile = File(...), db: Session = Depends(get_db)):
+def update_image(file: UploadFile = File(...), db: Session = Depends(get_db)):
 
     new_image = db.query(Garden).get(1)
 
@@ -59,7 +59,7 @@ def update_garden_image(file: UploadFile = File(...), db: Session = Depends(get_
 
 # 기본 텃밭 엔드포인트
 @router.post("/mygarden", response_model=GardenPydantic)
-def create_garden(my_garden: GardenCreate = GardenCreate(
+def register_garden(my_garden: GardenCreate = GardenCreate(
         gardenTemp=25.0,
         gardenHumid=50.0,
         gardenWater=60,
@@ -90,9 +90,4 @@ def get_garden_data(db: Session = Depends(get_db)):
 
     db.refresh(garden_data)
 
-    return GardenPydantic(
-        gardenTemp=garden_data.gardenTemp,
-        gardenHumid=garden_data.gardenHumid,
-        gardenWater=garden_data.gardenWater,
-        gardenImage=garden_data.gardenImage  # 이미지 파일 경로를 반환
-    )
+    return sqlalchemy_to_pydantic(garden_data)

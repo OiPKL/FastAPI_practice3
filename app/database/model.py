@@ -12,7 +12,7 @@ class User(Base):
     name = Column(String)
     age = Column(Integer)
     # 저장은 JSON 문자열, 읽기쓰기는 Python 배열
-    ownedVegetableIDs = Column(String, default="[]")
+    ownedVegetableIDs = Column(String, server_default="[]")
     login_time = Column(DateTime, default=datetime.utcnow)
 
 class Vegetable(Base):

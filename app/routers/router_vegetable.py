@@ -56,9 +56,23 @@ def register_plant(vegetable_data: VegetableCreate, db: Session = Depends(get_db
 
     return sqlalchemy_to_pydantic(new_vegetable)
 
+# 사용자 소유 식물 엔드포인트
+@router.get("/me/ownedIDs", response_model=list)
+def get_owned_ids(db: Session = Depends(get_db)):
+
+    # 현재 사용자 ID 가져오기
+    current_user = db.query(User).order_by(User.login_time.desc()).first()
+
+    if not current_user:
+        raise HTTPException(status_code=401, detail="User not found")
+
+    ownedIDs = json.loads(current_user.ownedVegetableIDs)
+
+    return ownedIDs
+
 # 식물 정보 엔드포인트
 @router.get("/me/{vegetableID}", response_model=VegetablePydantic)
-def get_owned_vegetable_by_id(vegetableID: int, db: Session = Depends(get_db)):
+def get_vegetable_data(vegetableID: int, db: Session = Depends(get_db)):
 
     # 현재 사용자 ID 가져오기
     current_user = db.query(User).order_by(User.login_time.desc()).first()
@@ -67,7 +81,7 @@ def get_owned_vegetable_by_id(vegetableID: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=401, detail="User not found")
 
     if vegetableID not in json.loads(current_user.ownedVegetableIDs):
-        raise HTTPException(status_code=404, detail="Vegetable not found")
+        raise HTTPException(status_code=404, detail="Not your Vegetable")
 
     vegetableID_data = db.query(Vegetable).filter(Vegetable.id == vegetableID).first()
 

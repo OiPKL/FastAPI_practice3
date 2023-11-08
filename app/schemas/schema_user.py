@@ -13,7 +13,6 @@ class User(BaseModel):
     username: str
     name: str
     age: int
-    ownedVegetableIDs: List[int] = []
 
     class Config:
         from_attributes = True
