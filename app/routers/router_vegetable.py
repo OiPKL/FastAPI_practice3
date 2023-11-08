@@ -31,8 +31,7 @@ def register_plant(vegetable_data: VegetableCreate, db: Session = Depends(get_db
 
     if not current_user:
         raise HTTPException(status_code=401, detail="User not found")
-    
-    # 새로운 식물 생성 (고유 id는 자동으로 생성)
+
     new_vegetable = Vegetable(
         vegetableName=vegetable_data.vegetableName,
         vegetableType=vegetable_data.vegetableType,
@@ -40,8 +39,7 @@ def register_plant(vegetable_data: VegetableCreate, db: Session = Depends(get_db
         vegetableDate=vegetable_data.vegetableDate,
         owner_id=current_user.id  # owner를 현재 사용자로 설정
     )
-    
-    # vegetableAge를 계산하고 업데이트
+
     new_vegetable.calculate_vegetable_age()
 
     db.add(new_vegetable)
@@ -71,7 +69,6 @@ def get_owned_vegetable_by_id(vegetableID: int, db: Session = Depends(get_db)):
     if vegetableID not in json.loads(current_user.ownedVegetableIDs):
         raise HTTPException(status_code=404, detail="Vegetable not found")
 
-    # 데이터베이스에서 vegetableID에 해당하는 정보 가져오기
     vegetableID_data = db.query(Vegetable).filter(Vegetable.id == vegetableID).first()
 
     if not vegetableID_data:

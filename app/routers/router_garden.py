@@ -57,7 +57,7 @@ def update_garden_image(file: UploadFile = File(...), db: Session = Depends(get_
 
     return sqlalchemy_to_pydantic(new_image)
 
-# 텃밭 등록 엔드포인트
+# 기본 텃밭 엔드포인트
 @router.post("/mygarden", response_model=GardenPydantic)
 def create_garden(my_garden: GardenCreate = GardenCreate(
         gardenTemp=25.0,
