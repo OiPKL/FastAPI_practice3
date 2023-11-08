@@ -64,8 +64,8 @@ def get_current_user(db: Session = Depends(get_db)):
     if not current_user:
         raise HTTPException(status_code=401, detail="User not found")
 
-    owned_vegetable_ids = json.loads(current_user.ownedVegetableIDs)
-    current_user.ownedVegetableIDs = owned_vegetable_ids
+    ownedIDs = json.loads(current_user.ownedVegetableIDs)
+    current_user.ownedVegetableIDs = ownedIDs
 
     db.refresh(current_user)
 
