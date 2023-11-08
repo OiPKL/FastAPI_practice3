@@ -49,9 +49,9 @@ def register_plant(vegetable_data: VegetableCreate, db: Session = Depends(get_db
     db.refresh(new_vegetable)
 
     # User 모델의 ownedVegetableIDs에 추가
-    owned_vegetable_ids = json.loads(current_user.ownedVegetableIDs)
-    owned_vegetable_ids.append(new_vegetable.id)
-    current_user.ownedVegetableIDs = json.dumps(owned_vegetable_ids)
+    new_ownedIDs = json.loads(current_user.ownedVegetableIDs)
+    new_ownedIDs.append(new_vegetable.id)
+    current_user.ownedVegetableIDs = json.dumps(new_ownedIDs)
 
     db.commit()
     db.refresh(current_user)
