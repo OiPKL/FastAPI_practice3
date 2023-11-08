@@ -5,22 +5,22 @@ from enum import Enum
 
 # 사용 가능한 Type 선택지 정의
 class VegetableType(str, Enum):
-    TypeA = "TypeA"
-    TypeB = "TypeB"
-    TypeC = "TypeC"
-    TypeD = "TypeD"
+    Lettuce = "Lettuce"
+    Sesame = "Sesame"
+    Pepper = "Pepper"
+    Tomato = "Tomato"
 
 # 사용 가능한 Char 선택지 정의
 class VegetableChar(str, Enum):
-    CharA = "CharA"
-    CharB = "CharB"
-    CharC = "CharC"
-    CharD = "CharD"
+    PokemonA = "PokemonA"
+    PokemonB = "PokemonB"
+    PokemonC = "PokemonC"
+    PokemonD = "PokemonD"
 
 class VegetableCreate(BaseModel):
     vegetableName: str
-    vegetableType: VegetableType = Field(..., description="Type 선택: TypeA, TypeB, TypeC, TypeD")
-    vegetableChar: VegetableChar = Field(..., description="Char 선택: CharA, CharB, CharC, CharD")
+    vegetableType: VegetableType = Field(..., description="Type 선택: Lettuce, Sesame, Pepper, Tomato")
+    vegetableChar: VegetableChar = Field(..., description="Char 선택: PokemonA, PokemonB, PokemonC, PokemonD")
     vegetableDate: str
 
 class Vegetable(BaseModel):
