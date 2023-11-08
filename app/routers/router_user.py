@@ -64,9 +64,9 @@ def get_current_user(db: Session = Depends(get_db)):
     if not current_user:
         raise HTTPException(status_code=401, detail="User not found")
 
-    db.refresh(current_user)
     owned_vegetable_ids = json.loads(current_user.ownedVegetableIDs)
     current_user.ownedVegetableIDs = owned_vegetable_ids
+
     db.refresh(current_user)
 
     return sqlalchemy_to_pydantic(current_user)
