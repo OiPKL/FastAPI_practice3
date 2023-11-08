@@ -4,7 +4,6 @@ from sqlalchemy import Column, Integer, Float, String, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from app.database.sqlite import Base
 from datetime import datetime
-import json
 
 class User(Base):
     __tablename__ = "UserID"
