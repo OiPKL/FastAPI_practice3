@@ -10,9 +10,9 @@ from app.routers import router_garden
 app = FastAPI()
 
 # CORS 설정 >> 주석처리 변경
-# origins = ["http://localhost:8080"]
+origins = ["http://localhost:8080"]
 # origins = ["https://localhost:8080"]
-origins = ["http://59.5.235.142:8080"]
+# origins = ["http://59.5.235.142:8080"]
 # origins = ["https://59.5.235.142:8080"]
 
 app.add_middleware(
