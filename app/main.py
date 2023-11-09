@@ -10,10 +10,10 @@ from app.routers import router_garden
 app = FastAPI()
 
 # CORS 설정 >> 주석처리 변경
-origins = ["http://192.168.74.31:8080"]
+# origins = ["http://192.168.74.31:8080"]
 # origins = ["http://localhost:8080"]
 # origins = ["https://localhost:8080"]
-# origins = ["http://59.5.235.142:8080"]
+origins = ["http://59.5.235.142:8080"]
 # origins = ["https://59.5.235.142:8080"]
 
 app.add_middleware(
@@ -52,6 +52,7 @@ if __name__ == "__main__":
 #         ssl_certfile='C:/Users/dhksw/Documents/work/cert.pem'
 #     )
     
+
 
 # uvicorn app.main:app --host 0.0.0.0 --port 8080 --reload
 # uvicorn app.main:app --host 0.0.0.0 --port 8080 --reload --ssl-keyfile=./key.pem --ssl-certfile=./cert.pem
