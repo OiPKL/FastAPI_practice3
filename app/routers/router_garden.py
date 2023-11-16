@@ -63,7 +63,7 @@ def register_garden(my_garden: GardenCreate = GardenCreate(
         gardenTemp=25.0,
         gardenHumid=50.0,
         gardenWater=60,
-        gardenImage="app/database/default_image.png"),  # 이미지 파일 경로를 저장
+        gardenImage="app/database/garden_images/default_image.png"),  # 이미지 파일 경로를 저장
         db: Session = Depends(get_db)):
 
     default_garden = Garden(
